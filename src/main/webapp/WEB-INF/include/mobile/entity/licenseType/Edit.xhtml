@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="LicenseTypeEditPage" lazy="true">
+        <pm:header title="#{bundle.EditLicenseTypeTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:LicenseTypeListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="LicenseTypeEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{licenseTypeController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{bundle.EditLicenseTypeLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{licenseTypeController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
+                            <p:calendar id="licenseEnd" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.EditLicenseTypeTitle_licenseEnd}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseName}" for="licenseName" />
+                            <p:inputText id="licenseName" value="#{licenseTypeController.selected.licenseName}" title="#{bundle.EditLicenseTypeTitle_licenseName}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
+                            <p:inputText id="licenseSerial" value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.EditLicenseTypeTitle_licenseSerial}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseStart}" for="licenseStart" />
+                            <p:calendar id="licenseStart" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.EditLicenseTypeTitle_licenseStart}"  showOn="button"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{licenseTypeController.save}" value="#{bundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:LicenseTypeListPage:LicenseTypeListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeListPage')}">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

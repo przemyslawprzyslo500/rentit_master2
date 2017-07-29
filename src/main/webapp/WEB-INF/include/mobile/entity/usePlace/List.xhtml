@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsePlaceListPage">
+        <pm:header title="#{bundle.ListUsePlaceTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":UsePlaceCreatePage:UsePlaceCreateForm" actionListener="#{usePlaceController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:UsePlaceCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsePlaceListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{usePlaceController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{usePlaceController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('UsePlaceListPage:UsePlaceListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('UsePlaceListPage:UsePlaceListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('UsePlaceListPage:UsePlaceListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListUsePlaceTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.building}" filterBy="#{item.building}" headerText="#{bundle.ListUsePlaceTitle_building}">
+                        <h:outputText value="#{item.building}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.floor}" filterBy="#{item.floor}" headerText="#{bundle.ListUsePlaceTitle_floor}">
+                        <h:outputText value="#{item.floor}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.place}" filterBy="#{item.place}" headerText="#{bundle.ListUsePlaceTitle_place}">
+                        <h:outputText value="#{item.place}"/>
+                    </p:column>
+
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsePlaceEditPage:UsePlaceEditForm" disabled="#{empty usePlaceController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:UsePlaceEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usePlaceController.delete}" update=":growl,datalist" disabled="#{empty usePlaceController.selected}">
+                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty usePlaceController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{bundle.UsePlaceHeading} #{bundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{bundle.UsePlaceMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty usePlaceController.selected.equipmentCollection}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{usePlaceController.navigateEquipmentCollection()}"/>
+                        </p:menuitem>  
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

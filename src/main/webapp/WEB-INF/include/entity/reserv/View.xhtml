@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservViewDlg" widgetVar="ReservViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewReservTitle}" closeOnEscape="true">
+
+            <h:form id="ReservViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{reservController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewReservLabel_id}"/>
+                        <h:outputText value="#{reservController.selected.id}" title="#{bundle.ViewReservTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_description}"/>
+                        <h:outputText value="#{reservController.selected.description}" title="#{bundle.ViewReservTitle_description}"/>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_reservationEnd}"/>
+                        <h:outputText value="#{reservController.selected.reservationEnd}" title="#{bundle.ViewReservTitle_reservationEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_reservationMadeDate}"/>
+                        <h:outputText value="#{reservController.selected.reservationMadeDate}" title="#{bundle.ViewReservTitle_reservationMadeDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_reservationStart}"/>
+                        <h:outputText value="#{reservController.selected.reservationStart}" title="#{bundle.ViewReservTitle_reservationStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_accountId}"/>
+                        <h:outputText value="#{reservController.selected.accountId.name}"/>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_equipmentId}"/>
+                        <h:outputText value="#{reservController.selected.equipmentId.name}"/>
+
+                        <h:outputText value="#{bundle.ViewReservLabel_reservStatusId}"/>
+                        <h:outputText value="#{reservController.selected.reservStatusId.reservationStatusName}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('ReservViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

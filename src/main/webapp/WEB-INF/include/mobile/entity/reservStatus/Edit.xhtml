@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ReservStatusEditPage" lazy="true">
+        <pm:header title="#{bundle.EditReservStatusTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservStatusListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ReservStatusEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{reservStatusController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{bundle.EditReservStatusLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{reservStatusController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
+                            <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="#{bundle.EditReservStatusTitle_reservationStatusName}" size="255" maxlength="255"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{reservStatusController.save}" value="#{bundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ReservStatusListPage:ReservStatusListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ReservStatusListPage')}">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

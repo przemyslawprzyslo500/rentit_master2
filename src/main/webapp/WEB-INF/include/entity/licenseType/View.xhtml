@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LicenseTypeViewDlg" widgetVar="LicenseTypeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewLicenseTypeTitle}" closeOnEscape="true">
+
+            <h:form id="LicenseTypeViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{licenseTypeController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_id}"/>
+                        <h:outputText value="#{licenseTypeController.selected.id}" title="#{bundle.ViewLicenseTypeTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseEnd}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.ViewLicenseTypeTitle_licenseEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseName}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseName}" title="#{bundle.ViewLicenseTypeTitle_licenseName}"/>
+
+                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseSerial}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.ViewLicenseTypeTitle_licenseSerial}"/>
+
+                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseStart}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.ViewLicenseTypeTitle_licenseStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('LicenseTypeViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+                <meta http-equiv="Pragma" content="no-cache"/>
+                <!--<meta http-equiv="Expires" content="-1"/>-->
+        <title><ui:insert name="title">"${msg.AppName}"</ui:insert></title>
+        <h:outputStylesheet library="css" name="pfcrud.css"/>
+        <h:outputScript library="scripts" name="pfcrud.js"/>
+
+    </h:head>
+    <h:body>
+        <p:growl id="growl" life="3000"/>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="200" header="${msg.AppName}">
+                <p:panelGrid columns="3">
+                    <!--<h:form styleClass="settings-form" rendered="#{request.userPrincipal ne null}"-->
+                    <h:form styleClass="settings-form"
+                            id="logout" prependId="false">
+                        <p:outputLabel value="${msg.Logged_as}"/>
+                        <p:outputLabel value=" #{request.userPrincipal.name}  "/>
+                        <p:commandButton action="#{loginBean.logout}" value="  ${msg.Logout}  "/>
+                        <p:panelGrid columns="2">
+                            <h:outputLabel id="testopis" value="Sesion ID"/>
+                            <h:outputLabel id="test" value="#{request.session.id}"/>
+                            <h:outputLabel id="test2opis" value="Session Context"/>
+                            <h:outputLabel id="test2" value="#{request.session.sessionContext}"/>
+                            <h:outputLabel id="test3opis" value="valueNames"/>
+                            <h:outputLabel id="test3" value="#{request.session.valueNames}"/>
+                        </p:panelGrid>
+                    </h:form>
+                    <p:panelGrid columns="4" >
+                        <p:outputLabel id="yourname" style="font-weight: bold" value="${msg.CreateAccountLabel_name} " />
+                        <p:outputLabel id="yoursurname" style="font-weight: bold" value="${msg.CreateAccountTitle_surname} " />
+                        <p:outputLabel id="yoursessionrole" style="font-weight: bold" value="${msg.CreateAccountLabel_accountFunction} " />
+                        <p:outputLabel id="youremail" style="font-weight: bold" value="${msg.CreateAccountLabel_email} " />
+                        <p:outputLabel id="yourname2" value="#{szczegolyMojegoKontaPageBean.konto.name}" />
+                        <p:outputLabel id="yoursurname2" value="#{szczegolyMojegoKontaPageBean.konto.surname}" />
+                        <p:outputLabel id="yoursessionrole2" value="#{szczegolyMojegoKontaPageBean.konto.accountFunction}" />
+                        <p:outputLabel id="youremail2" value="#{szczegolyMojegoKontaPageBean.konto.email}" />
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" style="text-align: center">
+                        <p:outputLabel id="actualtime" style="font-weight: bold" value="${msg.ActualTime} " />
+                        <p:clock pattern="HH:mm:ss dd.MM.yyyy" />
+                    </p:panelGrid>
+                </p:panelGrid>
+                <ui:include src="/WEB-INF/include/appmenu.xhtml"/>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

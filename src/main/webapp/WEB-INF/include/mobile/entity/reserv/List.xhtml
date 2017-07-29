@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ReservListPage">
+        <pm:header title="#{bundle.ListReservTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":ReservCreatePage:ReservCreateForm" actionListener="#{reservController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:ReservCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ReservListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{reservController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{reservController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{reservController.resetParents}"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel" listener="#{reservController.resetParents}"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('ReservListPage:ReservListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('ReservListPage:ReservListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('ReservListPage:ReservListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListReservTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.description}" filterBy="#{item.description}" headerText="#{bundle.ListReservTitle_description}">
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}" headerText="#{bundle.ListReservTitle_reservationEnd}">
+                        <h:outputText value="#{item.reservationEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}" headerText="#{bundle.ListReservTitle_reservationMadeDate}">
+                        <h:outputText value="#{item.reservationMadeDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.reservationStart}" filterBy="#{item.reservationStart}" headerText="#{bundle.ListReservTitle_reservationStart}">
+                        <h:outputText value="#{item.reservationStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.accountId.name}" filterBy="#{item.accountId.name}" headerText="#{bundle.ListReservTitle_accountId}">
+                        <h:outputText value="#{item.accountId.name}"/>
+                    </p:column>
+
+                    <ui:remove>
+                        <p:column sortBy="#{item.equipmentId.name}" filterBy="#{item.equipmentId.name}" headerText="#{bundle.ListReservTitle_equipmentId}">
+                            <h:outputText value="#{item.equipmentId.name}"/>
+                        </p:column>
+                    </ui:remove>>
+                    <ui:remove>
+                        <p:column sortBy="#{item.reservStatusId.reservationStatusName}" filterBy="#{item.reservStatusId.reservationStatusName}" headerText="#{bundle.ListReservTitle_reservStatusId}">
+                            <h:outputText value="#{item.reservStatusId.reservationStatusName}"/>
+                        </p:column>
+                    </ui:remove>>
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservEditPage:ReservEditForm" disabled="#{empty reservController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:ReservEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
+                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty reservController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{bundle.ReservHeading} #{bundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{bundle.ReservMenuItem_accountId}" icon="ui-icon-search" update=":AccountEditPage:AccountEditForm" disabled="#{empty reservController.selected.accountId}" actionListener="#{reservController.prepareAccountId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:AccountEditPage"/>
+                        </p:menuitem>
+                        <p:menuitem value="#{bundle.ReservMenuItem_equipmentId}" icon="ui-icon-search" update=":EquipmentEditPage:EquipmentEditForm" disabled="#{empty reservController.selected.equipmentId}" actionListener="#{reservController.prepareEquipmentId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:EquipmentEditPage"/>
+                        </p:menuitem>
+                        <p:menuitem value="#{bundle.ReservMenuItem_reservStatusId}" icon="ui-icon-search" update=":ReservStatusEditPage:ReservStatusEditForm" disabled="#{empty reservController.selected.reservStatusId}" actionListener="#{reservController.prepareReservStatusId}" action="#{mobilePageController.navigateWithHistory}">  
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="pm:ReservStatusEditPage"/>
+                        </p:menuitem>
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

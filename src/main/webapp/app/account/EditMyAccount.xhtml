@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      template="/WEB-INF/include/template.xhtml">
+
+    <ui:composition template="/WEB-INF/include/template.xhtml">
+        <!--<ui:param name="pageBean" value="#{accountController.pobierzMojeKonto()}" />-->
+        <ui:define name="title" />
+        <ui:define name="body">     
+            <h:form id="EditMyAccount">
+                <center>
+                    <h:panelGroup id="display">
+                        <p:panelGrid  columns="2" columnClasses="column">
+
+                            <h:outputLabel value="Login: " for="login"/>
+                            <p:inputText id="login" value="#{edytujKontoPageBean.konto.login}" title="login" />
+
+                            <h:outputLabel value="Name: " for="name"/>
+                            <p:inputText id="name" value="#{edytujKontoPageBean.konto.name}" title="name" />
+
+                            <h:outputLabel value="Surname: " for="surname"/>
+                            <p:inputText id="surname" value="#{edytujKontoPageBean.konto.surname}" title="surname" />
+                                                                                   
+                            <h:outputLabel value="E-mail: " for="email"/>
+                            <p:inputText id="email" value="#{edytujKontoPageBean.konto.email}" title="email" />
+
+                                <h:outputLabel for="pwd1" value="Password: *" />  
+                                <p:password id="pwd1" value="#{edytujKontoPageBean.konto.password}" feedback="true" match="pwd2" label="Password" />  
+
+                                <h:outputLabel for="pwd2" value="Password confirm: *" />  
+                                <p:password id="pwd2" value="#{edytujKontoPageBean.konto.password}" feedback="false" label="Password_repeat" />  
+
+                            <h:outputLabel value="Phone: " for="phone"/>
+                            <p:inputText id="phone" value="#{edytujKontoPageBean.konto.phone}" title="phone" />
+
+                        </p:panelGrid>
+
+                        <h:commandButton action="#{edytujKontoPageBean.zapiszKonto()}" value="Zapisz" />
+                        <h:commandButton value="Cancel" action="/faces/index.xhtml" immediate="true"/>
+                        <br />
+                    </h:panelGroup>
+                </center>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

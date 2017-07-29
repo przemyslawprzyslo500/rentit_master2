@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="LicenseTypeListPage">
+        <pm:header title="#{bundle.ListLicenseTypeTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":LicenseTypeCreatePage:LicenseTypeCreateForm" actionListener="#{licenseTypeController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="LicenseTypeListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{licenseTypeController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{licenseTypeController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('LicenseTypeListPage:LicenseTypeListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('LicenseTypeListPage:LicenseTypeListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('LicenseTypeListPage:LicenseTypeListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListLicenseTypeTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.licenseEnd}" filterBy="#{item.licenseEnd}" headerText="#{bundle.ListLicenseTypeTitle_licenseEnd}">
+                        <h:outputText value="#{item.licenseEnd}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}" headerText="#{bundle.ListLicenseTypeTitle_licenseName}">
+                        <h:outputText value="#{item.licenseName}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.licenseSerial}" filterBy="#{item.licenseSerial}" headerText="#{bundle.ListLicenseTypeTitle_licenseSerial}">
+                        <h:outputText value="#{item.licenseSerial}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}" headerText="#{bundle.ListLicenseTypeTitle_licenseStart}">
+                        <h:outputText value="#{item.licenseStart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LicenseTypeEditPage:LicenseTypeEditForm" disabled="#{empty licenseTypeController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:LicenseTypeEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{licenseTypeController.delete}" update=":growl,datalist" disabled="#{empty licenseTypeController.selected}">
+                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty licenseTypeController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{bundle.LicenseTypeHeading} #{bundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{bundle.LicenseTypeMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty licenseTypeController.selected.equipmentCollection}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{licenseTypeController.navigateEquipmentCollection()}"/>
+                        </p:menuitem>  
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

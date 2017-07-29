@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/include/template_empty.xhtml">
+    <!--<ui:composition template="/template.xhtml">-->
+    <!--<ui:composition template="/WEB-INF/include/template.xhtml">-->
+    <ui:define name="title">
+        <h:outputText value="#{bundle.AppName}"></h:outputText>
+    </ui:define>
+    <ui:define name="body"><center>
+            <!--<h:form id="logoutonlogin" prependId="false" styleClass="settings-form" rendered="#{request.userPrincipal ne null}">-->
+            <h:form id="logoutonlogin" prependId="false" styleClass="settings-form">
+                <!--<h:outputText value="You are logged in as: #{request.userPrincipal.name}"/>-->
+            </h:form>
+            <!--<h:commandButton action="/index" value="HOME PAGE"/>-->
+            <!--<h:form id="notlogin" prependId="false" rendered="#{request.userPrincipal ne not null}">-->
+            <h:form id="notlogin" prependId="false">
+                <h2>Hello, please log in:</h2><br />
+                <!--<a href="login.xhtml" LINK />-->
+                <a href="/rentit-master/">Start</a>
+                <h:panelGrid columns="2">
+                    <h:outputLabel for="j_username"
+                                   value="Please type your user name: "/>
+                    <h:inputText id="j_username" value="#{loginBean.userName}" 
+                                 autocomplete="off" size="20"/>
+                    <h:outputLabel for="j_password"
+                                   value="Please type your password: " />
+                    <h:inputSecret id="j_password" value="#{loginBean.password}"
+                                   autocomplete="off" size="20"/>
+                </h:panelGrid>
+                <h:panelGroup>
+                    <h:commandButton value="Submit" 
+                                     action="#{loginBean.login}"
+                                     type="submit"/>
+                    <h:commandButton value="Clear" type="reset"/>
+                </h:panelGroup>
+            </h:form>
+        </center>
+    </ui:define>
+</ui:composition>

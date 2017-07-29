@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/include/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.AppName}"></h:outputText>
+        </ui:define>
+        <ui:define name="body" id="body"><center>
+                <p:panel header="Password Changed">
+                    <p><h:outputText value="#{bundle.WelcomeMessage}"
+                                     rendered="!#{facesContext.externalContext.isUserInRole('inactive')}">
+                        </h:outputText></p>
+                    <br />
+                    <h2><h:outputText value="Success">
+                        </h:outputText></h2>
+                </p:panel>
+<!--                <h:outputText value="You are logged in as #{request.userPrincipal.name}"/>
+                <h:form styleClass="settings-form" rendered="#{request.userPrincipal ne null}"
+                        id="logoutbean" prependId="false">
+                    <h:commandButton action="#{loginBean.logout}" value="Logout"/>-->
+            </center>
+        </ui:define>
+    
+<!--    <ui:define name="title">
+        <h:outputText value="#{bundle.AppName}"></h:outputText>
+    </ui:define>
+    <ui:define name="body"><center>
+            <h:form id="success" >
+                <h2>SUKCES</h2><br />
+            </h:form>
+        </center>
+    </ui:define>-->
+</ui:composition>

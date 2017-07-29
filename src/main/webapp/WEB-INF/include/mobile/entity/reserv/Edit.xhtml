@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ReservEditPage" lazy="true">
+        <pm:header title="#{bundle.EditReservTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ReservListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ReservEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{reservController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{bundle.EditReservLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{reservController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_description}" for="description" />
+                            <p:inputText id="description" value="#{reservController.selected.description}" title="#{bundle.EditReservTitle_description}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_reservationEnd}" for="reservationEnd" />
+                            <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationEnd}" title="#{bundle.EditReservTitle_reservationEnd}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_reservationMadeDate}" for="reservationMadeDate" />
+                            <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.EditReservTitle_reservationMadeDate}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_reservationStart}" for="reservationStart" />
+                            <p:calendar id="reservationStart" pattern="MM/dd/yyyy" value="#{reservController.selected.reservationStart}" title="#{bundle.EditReservTitle_reservationStart}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_accountId}" for="accountId" />
+                            <p:selectOneMenu id="accountId" value="#{reservController.selected.accountId}"  converter="accountConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{accountController.items}"
+                                               var="accountIdItem"
+                                               itemValue="#{accountIdItem}"
+                                               itemLabel="#{accountIdItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_equipmentId}" for="equipmentId" />
+                            <p:selectOneMenu id="equipmentId" value="#{reservController.selected.equipmentId}"  converter="equipmentConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{equipmentController.items}"
+                                               var="equipmentIdItem"
+                                               itemValue="#{equipmentIdItem}"
+                                               itemLabel="#{equipmentIdItem.name.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{bundle.EditReservLabel_reservStatusId}" for="reservStatusId" />
+                            <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}"  converter="reservStatusConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{reservStatusController.items}"
+                                               var="reservStatusIdItem"
+                                               itemValue="#{reservStatusIdItem}"
+                                               itemLabel="#{reservStatusIdItem.reservationStatusName.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{reservController.save}" value="#{bundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ReservListPage:ReservListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ReservListPage')}">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

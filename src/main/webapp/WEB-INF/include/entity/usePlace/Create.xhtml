@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsePlaceCreateDlg" widgetVar="UsePlaceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="${msg.CreateUsePlaceTitle}" closeOnEscape="true">
+
+            <h:form id="UsePlaceCreateForm">
+
+                <h:panelGroup id="display" rendered="#{usePlaceController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{bundle.CreateUsePlaceLabel_building}" for="building" />
+                        <p:inputText id="building"  value="#{usePlaceController.selected.building}" title="${msg.CreateUsePlaceTitle_building}" size="100" maxlength="255" >
+                        <p:watermark for="building" value="Text..."/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{bundle.CreateUsePlaceLabel_floor}" for="floor" />
+                        <p:inputText id="floor" value="#{usePlaceController.selected.floor}" title="${msg.CreateUsePlaceTitle_floor}">
+                        <p:watermark for="floor" value="Number..."/>
+                        </p:inputText>    
+                        
+                        <p:outputLabel value="#{bundle.CreateUsePlaceLabel_place}" for="place" />
+                        <p:inputText id="place" value="#{usePlaceController.selected.place}" title="${msg.CreateUsePlaceTitle_place}" size="100" maxlength="255">
+                        <p:watermark for="place" value="Text..."/>
+                        </p:inputText>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usePlaceController.saveNew}" value="#{bundle.Save}" update="display,:UsePlaceListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsePlaceCreateDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('UsePlaceCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

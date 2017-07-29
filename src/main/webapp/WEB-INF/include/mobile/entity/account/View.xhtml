@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountViewPage" lazy="true">
+        <pm:header title="#{bundle.ViewAccountTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{bundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AccountListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{accountController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_id}"/>
+                            <h:outputText value="#{accountController.selected.id}" title="#{bundle.ViewAccountTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_accountFunction}"/>
+                            <h:outputText value="#{accountController.selected.accountFunction}" title="#{bundle.ViewAccountTitle_accountFunction}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_active}"/>
+                            <h:outputText value="#{accountController.selected.active}" title="#{bundle.ViewAccountTitle_active}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_email}"/>
+                            <h:outputText value="#{accountController.selected.email}" title="#{bundle.ViewAccountTitle_email}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_login}"/>
+                            <h:outputText value="#{accountController.selected.login}" title="#{bundle.ViewAccountTitle_login}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_name}"/>
+                            <h:outputText value="#{accountController.selected.name}" title="#{bundle.ViewAccountTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_password}"/>
+                            <h:outputText value="#{accountController.selected.password}" title="#{bundle.ViewAccountTitle_password}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_phone}"/>
+                            <h:outputText value="#{accountController.selected.phone}" title="#{bundle.ViewAccountTitle_phone}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{bundle.ViewAccountLabel_surname}"/>
+                            <h:outputText value="#{accountController.selected.surname}" title="#{bundle.ViewAccountTitle_surname}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

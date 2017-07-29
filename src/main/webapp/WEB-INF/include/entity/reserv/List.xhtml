@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ReservListForm">
+
+        <p:panel header="#{bundle.ListReservTitle}">
+            <p:contextMenu id="ReservDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('ReservListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('ReservListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{bundle.Edit}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{bundle.Delete}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{bundle.ReservMenuItem_accountId}" icon="ui-icon-search"  actionListener="#{reservController.prepareAccountId}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty reservController.selected.accountId}"/>  
+                <p:menuitem value="#{bundle.ReservMenuItem_equipmentId}" icon="ui-icon-search"  actionListener="#{reservController.prepareEquipmentId}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty reservController.selected.equipmentId}"/>  
+                <p:menuitem value="#{bundle.ReservMenuItem_reservStatusId}" icon="ui-icon-search"  actionListener="#{reservController.prepareReservStatusId}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservController.selected.reservStatusId}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{reservController.items}"
+                         lazy="false"
+                         rowKey="#{item.id}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{reservController.selected}"
+                         filteredValue="#{reservController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{reservController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.id}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ReservDataTableContextMenu" listener="#{reservController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ReservDataTableContextMenu" listener="#{reservController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{reservController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ReservListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.accountId.name}" filterBy="#{item.accountId.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_accountId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.accountId.name} #{item.accountId.surname} "/>
+                </p:column>
+
+                <p:column sortBy="#{item.equipmentId.name}" filterBy="#{item.equipmentId.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_equipmentId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.equipmentId.name}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.description}" filterBy="#{item.description}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_description}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_reservationMadeDate}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reservationMadeDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{item.reservationStart}" filterBy="#{item.reservationStart}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_reservationStart}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reservationStart}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListReservTitle_reservationEnd}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reservationEnd}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+                
+                    <p:column sortBy="#{item.reservStatusId.reservationStatusName}" filterBy="#{item.reservStatusId.reservationStatusName}">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListReservTitle_reservStatusId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.reservStatusId.reservationStatusName}"/>
+                    </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservController.prepareCreate}" update=":ReservCreateForm" oncomplete="PF('ReservCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":ReservViewForm" oncomplete="PF('ReservViewDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="editButton"   rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservEditForm" oncomplete="PF('ReservEditDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="deleteButton" rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
+                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

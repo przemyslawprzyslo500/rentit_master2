@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReservCreateDlg" widgetVar="ReservCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReservTitle}" closeOnEscape="true">
+
+            <h:form id="ReservCreateForm">
+
+                <h:panelGroup id="display" rendered="#{reservController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{bundle.CreateReservLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{reservController.selected.description}" title="#{bundle.CreateReservTitle_description}" size="100" maxlength="255"/>
+
+                        <p:outputLabel value="#{bundle.CreateReservLabel_reservationStart}" for="reservationStart" />
+                        <p:calendar id="reservationStart" pattern="MM/dd/yyyy" required="true" mindate="#{currentDate}" requiredMessage="#{bundle.CreateReservRequiredMessage_date}" value="#{reservController.selected.reservationStart}" title="#{bundle.CreateReservTitle_reservationStart}"  showOn="button" />
+                        
+                        <p:outputLabel value="#{bundle.CreateReservLabel_reservationEnd}" for="reservationEnd" />
+                        <p:calendar id="reservationEnd" pattern="MM/dd/yyyy" required="true" mindate="#{currentDate}" value="#{reservController.selected.reservationEnd}" title="#{bundle.CreateReservTitle_reservationEnd}"  showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.CreateReservLabel_reservationMadeDate}" for="reservationMadeDate" />
+                        <p:calendar id="reservationMadeDate" pattern="MM/dd/yyyy" mindate="#{currentDate}" maxdate="#{currentDate}" required="true" value="#{reservController.selected.reservationMadeDate}" title="#{bundle.CreateReservTitle_reservationMadeDate}"  showOn="button"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateReservLabel_accountId}" for="accountId" rendered="#{facesContext.externalContext.isUserInRole('admin')}"/>
+                        <p:selectOneMenu id="accountId" value="#{reservController.selected.accountId}"  converter="accountConverter" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{accountController.items}"
+                                           var="accountIdItem"
+                                           itemValue="#{accountIdItem}"
+                                           itemLabel="#{accountIdItem.name.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateReservLabel_accountId}" for="accountId2" rendered="#{facesContext.externalContext.isUserInRole('employee')}"/>
+                        <p:inputText id="accountId2" value="#{szczegolyMojegoKontaPageBean.konto.name}" size="20" maxlength="100" readonly="true" style="font-weight: bold" rendered="#{facesContext.externalContext.isUserInRole('employee')}"/>
+
+                        <p:outputLabel value="#{bundle.CreateReservLabel_equipmentId}" for="equipmentId" />
+                        <p:selectOneMenu id="equipmentId" value="#{reservController.selected.equipmentId}"  converter="equipmentConverter">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{equipmentController.items}"
+                                           var="equipmentIdItem"
+                                           itemValue="#{equipmentIdItem}"
+                                           itemLabel="#{equipmentIdItem.name.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateReservLabel_reservStatusId}" for="reservStatusId" rendered="#{facesContext.externalContext.isUserInRole('admin')}"/>
+                        <p:selectOneMenu id="reservStatusId" value="#{reservController.selected.reservStatusId}" converter="reservStatusConverter" rendered="#{facesContext.externalContext.isUserInRole('admin')}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservStatusController.items}"
+                                           var="reservStatusIdItem"
+                                           itemValue="#{reservStatusIdItem}"
+                                           itemLabel="#{reservStatusIdItem.reservationStatusName.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateReservLabel_reservStatusId}" for="reservStatusId2" rendered="#{facesContext.externalContext.isUserInRole('employee')}"/>
+                        <p:inputText id="reservStatusId2" value="Zarezerwowany" size="20" maxlength="100" readonly="true" style="font-weight: bold" rendered="#{facesContext.externalContext.isUserInRole('employee')}"/>
+                    
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reservController.saveNew}" value="#{bundle.Save}" update="display,:ReservListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservCreateDialog'));">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('ReservCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

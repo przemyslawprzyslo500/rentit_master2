@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AccountListPage">
+        <pm:header title="#{bundle.ListAccountTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{bundle.Create}" update=":AccountCreatePage:AccountCreateForm" actionListener="#{accountController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:AccountCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AccountListForm">
+
+                <p:dataTable id="datalist"
+                             value="#{accountController.items}"
+                             var="item"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             selectionMode="single"
+                             selection="#{accountController.selected}"
+                             reflow="true">
+
+                    <p:ajax event="rowSelect"   update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="rowUnselect" update="@form:editButton,@form:deleteButton,@form:navigationMenuButton,@form:navigationMenuPanel"/>
+                    <p:ajax event="swipeleft"   oncomplete="document.getElementById('AccountListPage:AccountListForm:deleteButton').click();"/>
+                    <p:ajax event="tap"         oncomplete="document.getElementById('AccountListPage:AccountListForm:editButton').click();"/>
+                    <p:ajax event="taphold"     oncomplete="document.getElementById('AccountListPage:AccountListForm:navigationMenuButton').click();"/>
+
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" headerText="#{bundle.ListAccountTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.accountFunction}" filterBy="#{item.accountFunction}" headerText="#{bundle.ListAccountTitle_accountFunction}">
+                        <h:outputText value="#{item.accountFunction}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.active}" filterBy="#{item.active}" headerText="#{bundle.ListAccountTitle_active}">
+                        <h:outputText value="#{item.active}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.email}" filterBy="#{item.email}" headerText="#{bundle.ListAccountTitle_email}">
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.login}" filterBy="#{item.login}" headerText="#{bundle.ListAccountTitle_login}">
+                        <h:outputText value="#{item.login}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" headerText="#{bundle.ListAccountTitle_name}">
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+
+                    <ui:remove>
+                        <p:column sortBy="#{item.password}" filterBy="#{item.password}" headerText="#{bundle.ListAccountTitle_password}">
+                            <h:outputText value="#{item.password}"/>
+                        </p:column>
+                    </ui:remove>>
+                    <ui:remove>
+                        <p:column sortBy="#{item.phone}" filterBy="#{item.phone}" headerText="#{bundle.ListAccountTitle_phone}">
+                            <h:outputText value="#{item.phone}"/>
+                        </p:column>
+                    </ui:remove>>
+                    <ui:remove>
+                        <p:column sortBy="#{item.surname}" filterBy="#{item.surname}" headerText="#{bundle.ListAccountTitle_surname}">
+                            <h:outputText value="#{item.surname}"/>
+                        </p:column>
+                    </ui:remove>>
+                </p:dataTable>
+                <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AccountEditPage:AccountEditForm" disabled="#{empty accountController.selected}" actionListener="#{mobilePageController.currentPageListener}" action="#{mobilePageController.navigateWithHistory('pm:AccountEditPage')}"/>
+                <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{accountController.delete}" update=":growl,datalist" disabled="#{empty accountController.selected}">
+                    <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                </p:commandButton>
+                <p:commandButton id="navigationMenuButton" style="visibility: hidden;" value="#{bundle.Menu}" disabled="#{empty accountController.selected}"/>
+
+                <p:overlayPanel id="navigationMenuPanel" for="navigationMenuButton" at="right" showEffect="overlay">
+                    <h2>#{bundle.AccountHeading} #{bundle.Menu}</h2>
+                    <p:menu>
+                        <p:menuitem value="#{bundle.AccountMenuItem_reservCollection}" icon="ui-icon-search"  action="#{mobilePageController.navigateWithHistory}" disabled="#{empty accountController.selected.reservCollection}" ajax="false">
+                            <f:actionListener binding="#{currentPageActionListener}"/>
+                            <f:setPropertyActionListener target="#{mobilePageController.nextPage}" value="#{accountController.navigateReservCollection()}"/>
+                        </p:menuitem>  
+                    </p:menu>
+                </p:overlayPanel>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>
