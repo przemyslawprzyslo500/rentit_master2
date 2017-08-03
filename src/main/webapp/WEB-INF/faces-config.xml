@@ -30,26 +30,31 @@
     </managed-bean>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>logout</from-outcome>
-            <to-view-id>login</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
+<!--        <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>login</to-view-id>
             <redirect/>
-        </navigation-case>    
+        </navigation-case>    -->
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>        
         <navigation-case>
+            <from-outcome>*</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>*</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+<!--        <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>
+        </navigation-case>-->
 <!--        <navigation-case>
             <from-outcome>*</from-outcome>
             <to-view-id>index</to-view-id>

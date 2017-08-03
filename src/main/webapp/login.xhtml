@@ -18,11 +18,11 @@
                 <!--<p:commandButton action="/rentit-master/login" value="  ${msg.Start}  "/>-->
                 <h:panelGrid columns="2">
                     <h:outputLabel for="j_username"
-                                   value="Please type your user name: "/>
+                                   value="${msg.Type_your_user_name} "/>
                     <h:inputText id="j_username" value="#{loginBean.userName}" 
                                  autocomplete="off" size="20"/>
                     <h:outputLabel for="j_password"
-                                   value="Please type your password: " />
+                                   value="${msg.Type_your_password}" />
                     <h:inputSecret id="j_password" value="#{loginBean.password}"
                                    autocomplete="off" size="20"/>
                 </h:panelGrid>
