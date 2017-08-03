@@ -21,7 +21,7 @@
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('employee')}" value="${msg.ReservHeading} " outcome="/app/reserv/index" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('admin')}" value="${msg.ReservStatusHeading} " outcome="/app/reservStatus/index" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('manager')}" value="${msg.UsePlaceHeading} " outcome="/app/usePlace/index" />
-                <p:menuitem value="BACK" onclick="history.go(-1)" icon="ui-icon-seek-prev"/>
+                <!--<p:menuitem value="BACK" onclick="history.go(-1)" icon="ui-icon-seek-prev"/>-->
             </p:menubar>
         </h:form>
     </ui:composition>
