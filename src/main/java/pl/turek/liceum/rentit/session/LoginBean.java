@@ -75,10 +75,7 @@ public class LoginBean extends HttpServlet{
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             request.logout();
-//            return "login";
-//            return "/login?faces-redirect=true";
-            return "login?faces-redirect=true";
-//            return "index?faces-redirect=true";
+            return "/login?faces-redirect=true";
         } catch (ServletException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE,
                     "Failed to logout", ex);

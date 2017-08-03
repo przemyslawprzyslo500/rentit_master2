@@ -41,6 +41,11 @@
             <redirect/>
         </navigation-case>        
         <navigation-case>
+            <from-outcome>/faces/app/licenseType/index.xhtml</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>        
+        <navigation-case>
             <from-outcome>*</from-outcome>
             <to-view-id>/login.xhtml</to-view-id>
             <redirect/>
