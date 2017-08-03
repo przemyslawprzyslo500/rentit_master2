@@ -10,11 +10,12 @@
         <h:outputText value="${msg.AppName}"></h:outputText>
     </ui:define>
     <ui:define name="body"><center>
-            <h:form id="logoutonlogin" prependId="false" styleClass="settings-form">
-            </h:form>
+<!--            <h:form id="logoutonlogin" prependId="false" styleClass="settings-form">
+            </h:form>-->
             <h:form id="notlogin" prependId="false">
-                <h2>Hello, please log in:</h2><br />
-                <!--<p:commandButton action="/rentit-master/login" value="  ${msg.Start}  "/>-->
+                <h2>Hello, please login:</h2><br />
+                <!--<a href="/rentit-master/index.xhtml">Start</a>-->
+                <p:commandButton action="/rentit-master/login" value="  ${msg.Start}  "/>
                 <h:panelGrid columns="2">
                     <h:outputLabel for="j_username"
                                    value="Please type your user name: "/>
