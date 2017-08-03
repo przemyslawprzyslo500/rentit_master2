@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="ReservStatusEditDlg" widgetVar="ReservStatusEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditReservStatusTitle}" closeOnEscape="true">
+        <p:dialog id="ReservStatusEditDlg" widgetVar="ReservStatusEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.EditReservStatusTitle}" closeOnEscape="true">
 
             <h:form id="ReservStatusEditForm">
 
@@ -15,16 +15,16 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{reservStatusController.selected != null}">
 
 
-                        <h:outputLabel value="#{bundle.EditReservStatusLabel_id}" for="id" />
+                        <h:outputLabel value="${msg.EditReservStatusLabel_id}" for="id" />
                         <h:outputText id="id" value="#{reservStatusController.selected.id}" />
 
-                        <p:outputLabel value="#{bundle.EditReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
-                        <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="#{bundle.EditReservStatusTitle_reservationStatusName}" size="255" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
+                        <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="${msg.EditReservStatusTitle_reservationStatusName}" size="255" maxlength="255"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reservStatusController.save}" value="#{bundle.Save}" update="display,:ReservStatusListForm:datalist,:ReservStatusListForm:ReservStatusDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservStatusEditDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{reservStatusController.save}" value="${msg.Save}" update="display,:ReservStatusListForm:datalist,:ReservStatusListForm:ReservStatusDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservStatusEditDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('ReservStatusEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('ReservStatusEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

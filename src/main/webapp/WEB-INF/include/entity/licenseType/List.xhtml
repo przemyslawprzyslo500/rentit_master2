@@ -8,14 +8,14 @@
 
     <h:form id="LicenseTypeListForm">
 
-        <p:panel header="#{bundle.ListLicenseTypeTitle}">
+        <p:panel header="${msg.ListLicenseTypeTitle}">
             <p:contextMenu id="LicenseTypeDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('LicenseTypeListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('LicenseTypeListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" onclick="document.getElementById('LicenseTypeListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" onclick="document.getElementById('LicenseTypeListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="${msg.Create}" onclick="document.getElementById('LicenseTypeListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="${msg.View}" onclick="document.getElementById('LicenseTypeListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="${msg.Edit}" onclick="document.getElementById('LicenseTypeListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="${msg.Delete}" onclick="document.getElementById('LicenseTypeListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.LicenseTypeMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{licenseTypeController.navigateEquipmentCollection}" disabled="#{licenseTypeController.isEquipmentCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="${msg.LicenseTypeMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{licenseTypeController.navigateEquipmentCollection}" disabled="#{licenseTypeController.isEquipmentCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{licenseTypeController.items}"
@@ -45,21 +45,21 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_id}"/>
+                        <h:outputText value="${msg.ListLicenseTypeTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
 
                <p:column sortBy="#{item.licenseName}" filterBy="#{item.licenseName}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseName}"/>
+                        <h:outputText value="${msg.ListLicenseTypeTitle_licenseName}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseName}"/>
                 </p:column>
                 
                 <p:column sortBy="#{item.licenseStart}" filterBy="#{item.licenseStart}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseStart}"/>
+                        <h:outputText value="${msg.ListLicenseTypeTitle_licenseStart}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseStart}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -68,7 +68,7 @@
                 
                 <p:column sortBy="#{item.licenseEnd}" filterBy="#{item.licenseEnd}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseEnd}"/>
+                        <h:outputText value="${msg.ListLicenseTypeTitle_licenseEnd}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseEnd}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -77,7 +77,7 @@
 
                 <p:column sortBy="#{item.licenseSerial}" filterBy="#{item.licenseSerial}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListLicenseTypeTitle_licenseSerial}"/>
+                        <h:outputText value="${msg.ListLicenseTypeTitle_licenseSerial}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseSerial}"/>
                 </p:column>
@@ -85,11 +85,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{licenseTypeController.prepareCreate}" update=":LicenseTypeCreateForm" oncomplete="PF('LicenseTypeCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":LicenseTypeViewForm" oncomplete="PF('LicenseTypeViewDialog').show()" disabled="#{empty licenseTypeController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LicenseTypeEditForm" oncomplete="PF('LicenseTypeEditDialog').show()" disabled="#{empty licenseTypeController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{licenseTypeController.delete}" update=":growl,datalist" disabled="#{empty licenseTypeController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="${msg.Create}" actionListener="#{licenseTypeController.prepareCreate}" update=":LicenseTypeCreateForm" oncomplete="PF('LicenseTypeCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="${msg.View}" update=":LicenseTypeViewForm" oncomplete="PF('LicenseTypeViewDialog').show()" disabled="#{empty licenseTypeController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="${msg.Edit}" update=":LicenseTypeEditForm" oncomplete="PF('LicenseTypeEditDialog').show()" disabled="#{empty licenseTypeController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="${msg.Delete}" actionListener="#{licenseTypeController.delete}" update=":growl,datalist" disabled="#{empty licenseTypeController.selected}">
+                <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

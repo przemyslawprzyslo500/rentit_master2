@@ -7,11 +7,11 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/include/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.AppName}"></h:outputText>
+            <h:outputText value="${msg.AppName}"></h:outputText>
         </ui:define>
         <ui:define name="body" id="body"><center>
                 <p:panel header="Password Changed">
-                    <p><h:outputText value="#{bundle.WelcomeMessage}"
+                    <p><h:outputText value="${msg.WelcomeMessage}"
                                      rendered="!#{facesContext.externalContext.isUserInRole('inactive')}">
                         </h:outputText></p>
                     <br />
@@ -26,7 +26,7 @@
         </ui:define>
     
 <!--    <ui:define name="title">
-        <h:outputText value="#{bundle.AppName}"></h:outputText>
+        <h:outputText value="${msg.AppName}"></h:outputText>
     </ui:define>
     <ui:define name="body"><center>
             <h:form id="success" >

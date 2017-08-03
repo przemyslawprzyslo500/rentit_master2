@@ -7,31 +7,23 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog rendered="#{facesContext.externalContext.isUserInRole('admin')}" id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="${msg.CreateAccountTitle}" closeOnEscape="true">
-        <!--<p:dialog rendered="#{facesContext.externalContext.isUserInRole('admin')}" id="AccountCreateDlg" widgetVar="AccountCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAccountTitle}" closeOnEscape="true">-->
-
             <h:form id="AccountCreateForm">
-
                 <h:panelGroup id="display" rendered="#{accountController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
-
                         <p:outputLabel value="${msg.CreateAccountLabel_name}" for="name" />
-                        <p:inputText id="name" required="true" value="#{accountController.selected.name}" title="#{bundle.CreateAccountTitle_name}" size="100" maxlength="255">
+                        <p:inputText id="name" required="true" value="#{accountController.selected.name}" title="${msg.CreateAccountTitle_name}" size="100" maxlength="255">
                             <p:watermark for="name,surname,login" value="Text..."/>
                             <p:watermark for="pwd1,pwd2" value="Combination of characters"/>
                             <p:watermark for="email" value="egzample@domain.com"/>
                             <p:watermark for="phone" value="xx xxx xxx xxx"/>
                         </p:inputText>
 
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_surname}" for="surname" />
-                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="#{bundle.CreateAccountTitle_surname}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.CreateAccountLabel_surname}" for="surname" />
+                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="${msg.CreateAccountTitle_surname}" size="100" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_login}" for="login" />
-                        <p:inputText id="login" required="true" value="#{accountController.selected.login}" title="#{bundle.CreateAccountTitle_login}" size="100" maxlength="255"/>
-
-<!--                        <p:outputLabel value="#{bundle.CreateAccountLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{accountController.selected.password}" title="#{bundle.CreateAccountTitle_password}" size="100" maxlength="255"/>-->
+                        <p:outputLabel value="${msg.CreateAccountLabel_login}" for="login" />
+                        <p:inputText id="login" required="true" value="#{accountController.selected.login}" title="${msg.CreateAccountTitle_login}" size="100" maxlength="255"/>
 
                         <h:outputLabel for="pwd1" value="Password: *" />  
                         <p:password id="pwd1" value="#{accountController.selected.password}" feedback="true" match="pwd2" label="Password" required="true" size="60"/>  
@@ -39,13 +31,13 @@
                         <h:outputLabel for="pwd2" value="Password confirm: *" />  
                         <p:password id="pwd2" value="#{accountController.selected.password}" feedback="false" label="Password_repeat" required="true" size="60"/> 
 
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.CreateAccountTitle_email}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.CreateAccountLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="${msg.CreateAccountTitle_email}" size="100" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.CreateAccountLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.CreateAccountTitle_phone}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.CreateAccountLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="${msg.CreateAccountTitle_phone}" size="100" maxlength="255"/>
 
-                        <p:outputLabel for="accountFunction" value="#{bundle.CreateAccountLabel_accountFunction}" />
+                        <p:outputLabel for="accountFunction" value="${msg.CreateAccountLabel_accountFunction}" />
                         <h:selectOneRadio id="accountFunction" value="#{accountController.selected.accountFunction}">
                             <f:selectItem itemLabel="Administrator" itemValue="admin" />
                             <f:selectItem itemLabel="Manager" itemValue="manager" />
@@ -53,18 +45,12 @@
                             <f:selectItem itemLabel="Inactive" itemValue="inactive" />
                         </h:selectOneRadio>
 
-<!--                        <p:outputLabel for="accountActive" value="#{bundle.CreateAccountLabel_active}" />
-                        <h:selectOneRadio id="accountActive" value="#{accountController.selected.active}">
-                            <f:selectItem itemLabel="YES" itemValue="true" />
-                            <f:selectItem itemLabel="NO" itemValue="false" />
-                        </h:selectOneRadio>    -->
-
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{accountController.saveNew}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountCreateDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{accountController.saveNew}" value="${msg.Save}" update="display,:AccountListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountCreateDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('AccountCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('AccountCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

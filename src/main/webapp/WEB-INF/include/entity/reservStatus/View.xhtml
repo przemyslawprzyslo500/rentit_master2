@@ -8,20 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="ReservStatusViewDlg" widgetVar="ReservStatusViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewReservStatusTitle}" closeOnEscape="true">
+        <p:dialog id="ReservStatusViewDlg" widgetVar="ReservStatusViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.ViewReservStatusTitle}" closeOnEscape="true">
 
             <h:form id="ReservStatusViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{reservStatusController.selected != null}">
 
-<!--                        <h:outputText value="#{bundle.ViewReservStatusLabel_id}" />
-                        <h:outputText value="#{reservStatusController.selected.id}" title="#{bundle.ViewReservStatusTitle_id}"/>-->
+<!--                        <h:outputText value="${msg.ViewReservStatusLabel_id}" />
+                        <h:outputText value="#{reservStatusController.selected.id}" title="${msg.ViewReservStatusTitle_id}"/>-->
 
-                        <h:outputText value="#{bundle.ViewReservStatusLabel_reservationStatusName}"/>
-                        <h:outputText value="#{reservStatusController.selected.reservationStatusName}" title="#{bundle.ViewReservStatusTitle_reservationStatusName}"/>
+                        <h:outputText value="${msg.ViewReservStatusLabel_reservationStatusName}"/>
+                        <h:outputText value="#{reservStatusController.selected.reservationStatusName}" title="${msg.ViewReservStatusTitle_reservationStatusName}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PF('ReservStatusViewDialog').hide()"/>
+                    <p:commandButton value="${msg.Close}" onclick="PF('ReservStatusViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

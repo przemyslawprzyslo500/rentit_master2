@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="LicenseTypeEditDlg" widgetVar="LicenseTypeEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditLicenseTypeTitle}" closeOnEscape="true">
+        <p:dialog id="LicenseTypeEditDlg" widgetVar="LicenseTypeEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.EditLicenseTypeTitle}" closeOnEscape="true">
 
             <h:form id="LicenseTypeEditForm">
 
@@ -15,25 +15,25 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{licenseTypeController.selected != null}">
 
 
-                        <h:outputLabel value="#{bundle.EditLicenseTypeLabel_id}" for="id" />
+                        <h:outputLabel value="${msg.EditLicenseTypeLabel_id}" for="id" />
                         <h:outputText id="id" value="#{licenseTypeController.selected.id}" />
 
-                        <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
-                        <p:calendar id="licenseEnd" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.EditLicenseTypeTitle_licenseEnd}"  showOn="button"/>
+                        <p:outputLabel value="${msg.EditLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
+                        <p:calendar id="licenseEnd" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseEnd}" title="${msg.EditLicenseTypeTitle_licenseEnd}"  showOn="button"/>
 
-                        <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseName}" for="licenseName" />
-                        <p:inputText id="licenseName" value="#{licenseTypeController.selected.licenseName}" title="#{bundle.EditLicenseTypeTitle_licenseName}" size="60" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditLicenseTypeLabel_licenseName}" for="licenseName" />
+                        <p:inputText id="licenseName" value="#{licenseTypeController.selected.licenseName}" title="${msg.EditLicenseTypeTitle_licenseName}" size="60" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
-                        <p:inputText id="licenseSerial" value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.EditLicenseTypeTitle_licenseSerial}" size="60" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
+                        <p:inputText id="licenseSerial" value="#{licenseTypeController.selected.licenseSerial}" title="${msg.EditLicenseTypeTitle_licenseSerial}" size="60" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.EditLicenseTypeLabel_licenseStart}" for="licenseStart" />
-                        <p:calendar id="licenseStart" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.EditLicenseTypeTitle_licenseStart}"  showOn="button"/>
+                        <p:outputLabel value="${msg.EditLicenseTypeLabel_licenseStart}" for="licenseStart" />
+                        <p:calendar id="licenseStart" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseStart}" title="${msg.EditLicenseTypeTitle_licenseStart}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{licenseTypeController.save}" value="#{bundle.Save}" update="display,:LicenseTypeListForm:datalist,:LicenseTypeListForm:LicenseTypeDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('LicenseTypeEditDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{licenseTypeController.save}" value="${msg.Save}" update="display,:LicenseTypeListForm:datalist,:LicenseTypeListForm:LicenseTypeDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('LicenseTypeEditDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('LicenseTypeEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('LicenseTypeEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

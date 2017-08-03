@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="ReservStatusCreateDlg" widgetVar="ReservStatusCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReservStatusTitle}" closeOnEscape="true">
+        <p:dialog id="ReservStatusCreateDlg" widgetVar="ReservStatusCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="${msg.CreateReservStatusTitle}" closeOnEscape="true">
 
             <h:form id="ReservStatusCreateForm">
 
@@ -16,10 +16,10 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="${msg.CreateReservStatusLabel_reservationStatusName}" for="reservationStatusName" />
-                        <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="#{bundle.CreateReservStatusTitle_reservationStatusName}" size="100" maxlength="255"/>
+                        <p:inputText id="reservationStatusName" value="#{reservStatusController.selected.reservationStatusName}" title="${msg.CreateReservStatusTitle_reservationStatusName}" size="100" maxlength="255"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reservStatusController.saveNew}" value="#{bundle.Save}" update="display,:ReservStatusListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservStatusCreateDialog'));">
-                        <p:confirm header="${msg.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{reservStatusController.saveNew}" value="${msg.Save}" update="display,:ReservStatusListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ReservStatusCreateDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
                     <p:commandButton value="${msg.Cancel}" oncomplete="PF('ReservStatusCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>

@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="UsePlaceViewDlg" widgetVar="UsePlaceViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewUsePlaceTitle}" closeOnEscape="true">
+        <p:dialog id="UsePlaceViewDlg" widgetVar="UsePlaceViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.ViewUsePlaceTitle}" closeOnEscape="true">
 
             <h:form id="UsePlaceViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{usePlaceController.selected != null}">
 
-                        <h:outputText value="#{bundle.ViewUsePlaceLabel_id}"/>
-                        <h:outputText value="#{usePlaceController.selected.id}" title="#{bundle.ViewUsePlaceTitle_id}"/>
+                        <h:outputText value="${msg.ViewUsePlaceLabel_id}"/>
+                        <h:outputText value="#{usePlaceController.selected.id}" title="${msg.ViewUsePlaceTitle_id}"/>
 
-                        <h:outputText value="#{bundle.ViewUsePlaceLabel_building}"/>
-                        <h:outputText value="#{usePlaceController.selected.building}" title="#{bundle.ViewUsePlaceTitle_building}"/>
+                        <h:outputText value="${msg.ViewUsePlaceLabel_building}"/>
+                        <h:outputText value="#{usePlaceController.selected.building}" title="${msg.ViewUsePlaceTitle_building}"/>
 
-                        <h:outputText value="#{bundle.ViewUsePlaceLabel_floor}"/>
-                        <h:outputText value="#{usePlaceController.selected.floor}" title="#{bundle.ViewUsePlaceTitle_floor}"/>
+                        <h:outputText value="${msg.ViewUsePlaceLabel_floor}"/>
+                        <h:outputText value="#{usePlaceController.selected.floor}" title="${msg.ViewUsePlaceTitle_floor}"/>
 
-                        <h:outputText value="#{bundle.ViewUsePlaceLabel_place}"/>
-                        <h:outputText value="#{usePlaceController.selected.place}" title="#{bundle.ViewUsePlaceTitle_place}"/>
+                        <h:outputText value="${msg.ViewUsePlaceLabel_place}"/>
+                        <h:outputText value="#{usePlaceController.selected.place}" title="${msg.ViewUsePlaceTitle_place}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PF('UsePlaceViewDialog').hide()"/>
+                    <p:commandButton value="${msg.Close}" onclick="PF('UsePlaceViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

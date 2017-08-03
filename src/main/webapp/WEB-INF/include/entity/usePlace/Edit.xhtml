@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="UsePlaceEditDlg" widgetVar="UsePlaceEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditUsePlaceTitle}" closeOnEscape="true">
+        <p:dialog id="UsePlaceEditDlg" widgetVar="UsePlaceEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.EditUsePlaceTitle}" closeOnEscape="true">
 
             <h:form id="UsePlaceEditForm">
 
@@ -15,22 +15,22 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{usePlaceController.selected != null}">
 
 
-<!--                        <h:outputLabel value="#{bundle.EditUsePlaceLabel_id}" for="id" />
+<!--                        <h:outputLabel value="${msg.EditUsePlaceLabel_id}" for="id" />
                         <h:outputText id="id" value="#{usePlaceController.selected.id}" />-->
 
-                        <p:outputLabel value="#{bundle.EditUsePlaceLabel_building}" for="building" />
-                        <p:inputText id="building" value="#{usePlaceController.selected.building}" title="#{bundle.EditUsePlaceTitle_building}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditUsePlaceLabel_building}" for="building" />
+                        <p:inputText id="building" value="#{usePlaceController.selected.building}" title="${msg.EditUsePlaceTitle_building}" size="100" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.EditUsePlaceLabel_floor}" for="floor" />
-                        <p:inputText id="floor" value="#{usePlaceController.selected.floor}" title="#{bundle.EditUsePlaceTitle_floor}"/>
+                        <p:outputLabel value="${msg.EditUsePlaceLabel_floor}" for="floor" />
+                        <p:inputText id="floor" value="#{usePlaceController.selected.floor}" title="${msg.EditUsePlaceTitle_floor}"/>
 
-                        <p:outputLabel value="#{bundle.EditUsePlaceLabel_place}" for="place" />
-                        <p:inputText id="place" value="#{usePlaceController.selected.place}" title="#{bundle.EditUsePlaceTitle_place}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditUsePlaceLabel_place}" for="place" />
+                        <p:inputText id="place" value="#{usePlaceController.selected.place}" title="${msg.EditUsePlaceTitle_place}" size="100" maxlength="255"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usePlaceController.save}" value="#{bundle.Save}" update="display,:UsePlaceListForm:datalist,:UsePlaceListForm:UsePlaceDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsePlaceEditDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{usePlaceController.save}" value="${msg.Save}" update="display,:UsePlaceListForm:datalist,:UsePlaceListForm:UsePlaceDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsePlaceEditDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('UsePlaceEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('UsePlaceEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

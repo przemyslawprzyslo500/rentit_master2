@@ -7,35 +7,35 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog rendered="#{facesContext.externalContext.isUserInRole('admin')}" id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditAccountTitle}" closeOnEscape="true">
+        <p:dialog rendered="#{facesContext.externalContext.isUserInRole('admin')}" id="AccountEditDlg" widgetVar="AccountEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.EditAccountTitle}" closeOnEscape="true">
 
             <h:form id="AccountEditForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{accountController.selected != null}">
 
-                        <h:outputLabel value="#{bundle.EditAccountLabel_id}" for="id" />
+                        <h:outputLabel value="${msg.EditAccountLabel_id}" for="id" />
                         <h:outputText id="id" value="#{accountController.selected.id}" />
 
-                        <p:outputLabel value="#{bundle.EditAccountLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{accountController.selected.name}" title="#{bundle.EditAccountTitle_name}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{accountController.selected.name}" title="${msg.EditAccountTitle_name}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.EditAccountLabel_surname}" for="surname" />
-                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="#{bundle.EditAccountTitle_surname}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_surname}" for="surname" />
+                        <p:inputText id="surname" value="#{accountController.selected.surname}" title="${msg.EditAccountTitle_surname}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.EditAccountLabel_login}" for="login" />
-                        <p:inputText id="login" value="#{accountController.selected.login}" title="#{bundle.EditAccountTitle_login}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{accountController.selected.login}" title="${msg.EditAccountTitle_login}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.EditAccountLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{accountController.selected.password}" title="#{bundle.EditAccountTitle_password}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{accountController.selected.password}" title="${msg.EditAccountTitle_password}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.EditAccountLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{accountController.selected.email}" title="#{bundle.EditAccountTitle_email}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{accountController.selected.email}" title="${msg.EditAccountTitle_email}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.EditAccountLabel_phone}" for="phone" />
-                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="#{bundle.EditAccountTitle_phone}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditAccountLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{accountController.selected.phone}" title="${msg.EditAccountTitle_phone}" size="100" maxlength="255"/>
                         
-                        <p:outputLabel for="accountFunction" value="#{bundle.CreateAccountLabel_accountFunction}" />
+                        <p:outputLabel for="accountFunction" value="${msg.CreateAccountLabel_accountFunction}" />
                         <h:selectOneRadio id="accountFunction" value="#{accountController.selected.accountFunction}">
                             <f:selectItem itemLabel="Administrator" itemValue="admin" />
                             <f:selectItem itemLabel="Manager" itemValue="manager" />
@@ -43,17 +43,17 @@
                             <f:selectItem itemLabel="Inactive" itemValue="inactive" />
                         </h:selectOneRadio>
 
-<!--                        <p:outputLabel for="accountActive" value="#{bundle.CreateAccountLabel_active}" />
+<!--                        <p:outputLabel for="accountActive" value="${msg.CreateAccountLabel_active}" />
                         <h:selectOneRadio id="accountActive" value="#{accountController.selected.active}">
                             <f:selectItem itemLabel="YES" itemValue="true" />
                             <f:selectItem itemLabel="NO" itemValue="false" />
                         </h:selectOneRadio>  -->
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{accountController.save}" value="#{bundle.Save}" update="display,:AccountListForm:datalist,:AccountListForm:AccountDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountEditDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{accountController.save}" value="${msg.Save}" update="display,:AccountListForm:datalist,:AccountListForm:AccountDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AccountEditDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('AccountEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('AccountEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -8,43 +8,43 @@
 
     <ui:composition>
 
-        <p:dialog id="LicenseTypeCreateDlg" widgetVar="LicenseTypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLicenseTypeTitle}" closeOnEscape="true">
+        <p:dialog id="LicenseTypeCreateDlg" widgetVar="LicenseTypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="${msg.CreateLicenseTypeTitle}" closeOnEscape="true">
 
             <h:form id="LicenseTypeCreateForm">
 
                 <h:panelGroup id="display" rendered="#{licenseTypeController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{bundle.CreateLicenseTypeLabel_licenseName}" for="licenseName" />
+                        <p:outputLabel value="${msg.CreateLicenseTypeLabel_licenseName}" for="licenseName" />
                         <p:inputText id="licenseName" value="#{licenseTypeController.selected.licenseName}" 
-                                     title="#{bundle.CreateLicenseTypeTitle_licenseName}" size="60" maxlength="255">
+                                     title="${msg.CreateLicenseTypeTitle_licenseName}" size="60" maxlength="255">
                         <p:watermark for="licenseEnd,licenseStart" value="Date from callendar..."/>
                         <p:watermark for="licenseSerial" value="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"/>
                         <p:watermark for="licenseName" value="Text..."/>
                         </p:inputText>
                         
-                        <p:outputLabel value="#{bundle.CreateLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
+                        <p:outputLabel value="${msg.CreateLicenseTypeLabel_licenseSerial}" for="licenseSerial" />
                         <p:inputText id="licenseSerial" value="#{licenseTypeController.selected.licenseSerial}" 
-                                     title="#{bundle.CreateLicenseTypeTitle_licenseSerial}" size="60" maxlength="255"/>
+                                     title="${msg.CreateLicenseTypeTitle_licenseSerial}" size="60" maxlength="255"/>
                         
-                        <p:outputLabel value="#{bundle.CreateLicenseTypeLabel_licenseStart}" for="licenseStart" />
+                        <p:outputLabel value="${msg.CreateLicenseTypeLabel_licenseStart}" for="licenseStart" />
                         <p:calendar id="licenseStart" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseStart}" 
-                                    title="#{bundle.CreateLicenseTypeTitle_licenseStart}"  showOn="button"/>
+                                    title="${msg.CreateLicenseTypeTitle_licenseStart}"  showOn="button"/>
                         
-                        <p:outputLabel value="#{bundle.CreateLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
+                        <p:outputLabel value="${msg.CreateLicenseTypeLabel_licenseEnd}" for="licenseEnd" />
                         <p:calendar id="licenseEnd" pattern="MM/dd/yyyy" value="#{licenseTypeController.selected.licenseEnd}" 
-                                    title="#{bundle.CreateLicenseTypeTitle_licenseEnd}"  showOn="button"
+                                    title="${msg.CreateLicenseTypeTitle_licenseEnd}"  showOn="button"
                                     mindate="licenseStart"/>
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{licenseTypeController.saveNew}" value="#{bundle.Save}" 
+                    <p:commandButton actionListener="#{licenseTypeController.saveNew}" value="${msg.Save}" 
                                      update="display,:LicenseTypeListForm:datalist,:growl" 
                                      oncomplete="handleSubmit(xhr,status,args,PF('LicenseTypeCreateDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" 
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmCreateMessage}" 
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('LicenseTypeCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('LicenseTypeCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

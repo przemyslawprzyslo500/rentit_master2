@@ -39,16 +39,26 @@
             <from-outcome>index</from-outcome>
             <to-view-id>login</to-view-id>
             <redirect/>
-            <navigation-case>
-                <from-outcome>logout</from-outcome>
-                <to-view-id>login</to-view-id>
-                <redirect/>
-            </navigation-case>        
-            <navigation-case>
-                <from-outcome>login</from-outcome>
-                <to-view-id>index</to-view-id>
-                <redirect/>
-            </navigation-case>
+        </navigation-case>    
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>login</to-view-id>
+            <redirect/>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>index</to-view-id>
+            <redirect/>
         </navigation-case>
+<!--        <navigation-case>
+            <from-outcome>*</from-outcome>
+            <to-view-id>index</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>*</from-outcome>
+            <to-view-id>login</to-view-id>
+            <redirect/>
+        </navigation-case>-->
     </navigation-rule>
 </faces-config>

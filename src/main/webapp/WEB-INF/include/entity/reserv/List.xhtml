@@ -8,16 +8,16 @@
 
     <h:form id="ReservListForm">
 
-        <p:panel header="#{bundle.ListReservTitle}">
+        <p:panel header="${msg.ListReservTitle}">
             <p:contextMenu id="ReservDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('ReservListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('ReservListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="${msg.Create}" onclick="document.getElementById('ReservListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="${msg.View}" onclick="document.getElementById('ReservListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="${msg.Edit}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="${msg.Delete}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('ReservListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.ReservMenuItem_accountId}" icon="ui-icon-search"  actionListener="#{reservController.prepareAccountId}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty reservController.selected.accountId}"/>  
-                <p:menuitem value="#{bundle.ReservMenuItem_equipmentId}" icon="ui-icon-search"  actionListener="#{reservController.prepareEquipmentId}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty reservController.selected.equipmentId}"/>  
-                <p:menuitem value="#{bundle.ReservMenuItem_reservStatusId}" icon="ui-icon-search"  actionListener="#{reservController.prepareReservStatusId}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservController.selected.reservStatusId}"/>  
+                <p:menuitem value="${msg.ReservMenuItem_accountId}" icon="ui-icon-search"  actionListener="#{reservController.prepareAccountId}" update=":AccountViewForm" oncomplete="PF('AccountViewDialog').show()" disabled="#{empty reservController.selected.accountId}"/>  
+                <p:menuitem value="${msg.ReservMenuItem_equipmentId}" icon="ui-icon-search"  actionListener="#{reservController.prepareEquipmentId}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty reservController.selected.equipmentId}"/>  
+                <p:menuitem value="${msg.ReservMenuItem_reservStatusId}" icon="ui-icon-search"  actionListener="#{reservController.prepareReservStatusId}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservController.selected.reservStatusId}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{reservController.items}"
@@ -47,35 +47,35 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_id}"/>
+                        <h:outputText value="${msg.ListReservTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
 
                 <p:column sortBy="#{item.accountId.name}" filterBy="#{item.accountId.name}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_accountId}"/>
+                        <h:outputText value="${msg.ListReservTitle_accountId}"/>
                     </f:facet>
                     <h:outputText value="#{item.accountId.name} #{item.accountId.surname} "/>
                 </p:column>
 
                 <p:column sortBy="#{item.equipmentId.name}" filterBy="#{item.equipmentId.name}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_equipmentId}"/>
+                        <h:outputText value="${msg.ListReservTitle_equipmentId}"/>
                     </f:facet>
                     <h:outputText value="#{item.equipmentId.name}"/>
                 </p:column>
 
                 <p:column sortBy="#{item.description}" filterBy="#{item.description}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_description}"/>
+                        <h:outputText value="${msg.ListReservTitle_description}"/>
                     </f:facet>
                     <h:outputText value="#{item.description}"/>
                 </p:column>
 
                 <p:column sortBy="#{item.reservationMadeDate}" filterBy="#{item.reservationMadeDate}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationMadeDate}"/>
+                        <h:outputText value="${msg.ListReservTitle_reservationMadeDate}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationMadeDate}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -84,7 +84,7 @@
 
                 <p:column sortBy="#{item.reservationStart}" filterBy="#{item.reservationStart}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationStart}"/>
+                        <h:outputText value="${msg.ListReservTitle_reservationStart}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationStart}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -93,7 +93,7 @@
 
                 <p:column sortBy="#{item.reservationEnd}" filterBy="#{item.reservationEnd}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservTitle_reservationEnd}"/>
+                        <h:outputText value="${msg.ListReservTitle_reservationEnd}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationEnd}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -102,18 +102,18 @@
                 
                     <p:column sortBy="#{item.reservStatusId.reservationStatusName}" filterBy="#{item.reservStatusId.reservationStatusName}">
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListReservTitle_reservStatusId}"/>
+                            <h:outputText value="${msg.ListReservTitle_reservStatusId}"/>
                         </f:facet>
                         <h:outputText value="#{item.reservStatusId.reservationStatusName}"/>
                     </p:column>
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservController.prepareCreate}" update=":ReservCreateForm" oncomplete="PF('ReservCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":ReservViewForm" oncomplete="PF('ReservViewDialog').show()" disabled="#{empty reservController.selected}"/>
-            <p:commandButton id="editButton"   rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservEditForm" oncomplete="PF('ReservEditDialog').show()" disabled="#{empty reservController.selected}"/>
-            <p:commandButton id="deleteButton" rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="${msg.Create}" actionListener="#{reservController.prepareCreate}" update=":ReservCreateForm" oncomplete="PF('ReservCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="${msg.View}" update=":ReservViewForm" oncomplete="PF('ReservViewDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="editButton"   rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-pencil" value="${msg.Edit}" update=":ReservEditForm" oncomplete="PF('ReservEditDialog').show()" disabled="#{empty reservController.selected}"/>
+            <p:commandButton id="deleteButton" rendered="#{facesContext.externalContext.isUserInRole('manager')}" style="visibility: hidden;" icon="ui-icon-trash"  value="${msg.Delete}" actionListener="#{reservController.delete}" update=":growl,datalist" disabled="#{empty reservController.selected}">
+                <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

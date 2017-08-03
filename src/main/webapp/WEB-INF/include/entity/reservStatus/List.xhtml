@@ -8,14 +8,14 @@
 
     <h:form id="ReservStatusListForm">
 
-        <p:panel header="#{bundle.ListReservStatusTitle}">
+        <p:panel header="${msg.ListReservStatusTitle}">
             <p:contextMenu id="ReservStatusDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('ReservStatusListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('ReservStatusListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" onclick="document.getElementById('ReservStatusListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" onclick="document.getElementById('ReservStatusListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="${msg.Create}" onclick="document.getElementById('ReservStatusListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="${msg.View}" onclick="document.getElementById('ReservStatusListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="${msg.Edit}" onclick="document.getElementById('ReservStatusListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="${msg.Delete}" onclick="document.getElementById('ReservStatusListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.ReservStatusMenuItem_reservCollection}" icon="ui-icon-search"  action="#{reservStatusController.navigateReservCollection}" disabled="#{reservStatusController.isReservCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="${msg.ReservStatusMenuItem_reservCollection}" icon="ui-icon-search"  action="#{reservStatusController.navigateReservCollection}" disabled="#{reservStatusController.isReservCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{reservStatusController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservStatusTitle_id}"/>
+                        <h:outputText value="${msg.ListReservStatusTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.reservationStatusName}" filterBy="#{item.reservationStatusName}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListReservStatusTitle_reservationStatusName}"/>
+                        <h:outputText value="${msg.ListReservStatusTitle_reservationStatusName}"/>
                     </f:facet>
                     <h:outputText value="#{item.reservationStatusName}"/>
                 </p:column>
@@ -61,11 +61,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservStatusController.prepareCreate}" update=":ReservStatusCreateForm" oncomplete="PF('ReservStatusCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservStatusController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservStatusEditForm" oncomplete="PF('ReservStatusEditDialog').show()" disabled="#{empty reservStatusController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservStatusController.delete}" update=":growl,datalist" disabled="#{empty reservStatusController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="${msg.Create}" actionListener="#{reservStatusController.prepareCreate}" update=":ReservStatusCreateForm" oncomplete="PF('ReservStatusCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="${msg.View}" update=":ReservStatusViewForm" oncomplete="PF('ReservStatusViewDialog').show()" disabled="#{empty reservStatusController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="${msg.Edit}" update=":ReservStatusEditForm" oncomplete="PF('ReservStatusEditDialog').show()" disabled="#{empty reservStatusController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="${msg.Delete}" actionListener="#{reservStatusController.delete}" update=":growl,datalist" disabled="#{empty reservStatusController.selected}">
+                <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

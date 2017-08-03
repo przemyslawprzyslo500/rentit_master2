@@ -12,7 +12,7 @@
     <h:body>
         <p:growl id="growl" life="3000"/>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" header="#{bundle.AppName}">
+            <p:layoutUnit position="north" size="100" header="${msg.AppName}">
                 <h:form styleClass="settings-form" rendered="#{request.userPrincipal ne null}">
                     <p:outputLabel value="You are logged in as #{request.userPrincipal.name}  "/>
                     <h:commandButton action="#{loginBean.logout}" value="Logout"/>

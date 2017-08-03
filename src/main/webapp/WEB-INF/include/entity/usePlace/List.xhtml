@@ -8,14 +8,14 @@
 
     <h:form id="UsePlaceListForm">
 
-        <p:panel header="#{bundle.ListUsePlaceTitle}">
+        <p:panel header="${msg.ListUsePlaceTitle}">
             <p:contextMenu id="UsePlaceDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" onclick="document.getElementById('UsePlaceListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('UsePlaceListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" onclick="document.getElementById('UsePlaceListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" onclick="document.getElementById('UsePlaceListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="${msg.Create}" onclick="document.getElementById('UsePlaceListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="${msg.View}" onclick="document.getElementById('UsePlaceListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="${msg.Edit}" onclick="document.getElementById('UsePlaceListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="${msg.Delete}" onclick="document.getElementById('UsePlaceListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.UsePlaceMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{usePlaceController.navigateEquipmentCollection}" disabled="#{usePlaceController.isEquipmentCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="${msg.UsePlaceMenuItem_equipmentCollection}" icon="ui-icon-search"  action="#{usePlaceController.navigateEquipmentCollection}" disabled="#{usePlaceController.isEquipmentCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{usePlaceController.items}"
@@ -45,7 +45,7 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListUsePlaceTitle_id}"/>
+                        <h:outputText value="${msg.ListUsePlaceTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
@@ -53,7 +53,7 @@
 
                 <p:column sortBy="#{item.building}" filterBy="#{item.building}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListUsePlaceTitle_building}"/>
+                        <h:outputText value="${msg.ListUsePlaceTitle_building}"/>
                     </f:facet>
                     <h:outputText value="#{item.building}"/>
                 </p:column>
@@ -61,7 +61,7 @@
 
                 <p:column sortBy="#{item.floor}" filterBy="#{item.floor}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListUsePlaceTitle_floor}"/>
+                        <h:outputText value="${msg.ListUsePlaceTitle_floor}"/>
                     </f:facet>
                     <h:outputText value="#{item.floor}"/>
                 </p:column>
@@ -69,7 +69,7 @@
 
                 <p:column sortBy="#{item.place}" filterBy="#{item.place}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListUsePlaceTitle_place}"/>
+                        <h:outputText value="${msg.ListUsePlaceTitle_place}"/>
                     </f:facet>
                     <h:outputText value="#{item.place}"/>
                 </p:column>
@@ -77,11 +77,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usePlaceController.prepareCreate}" update=":UsePlaceCreateForm" oncomplete="PF('UsePlaceCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":UsePlaceViewForm" oncomplete="PF('UsePlaceViewDialog').show()" disabled="#{empty usePlaceController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsePlaceEditForm" oncomplete="PF('UsePlaceEditDialog').show()" disabled="#{empty usePlaceController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usePlaceController.delete}" update=":growl,datalist" disabled="#{empty usePlaceController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="${msg.Create}" actionListener="#{usePlaceController.prepareCreate}" update=":UsePlaceCreateForm" oncomplete="PF('UsePlaceCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="${msg.View}" update=":UsePlaceViewForm" oncomplete="PF('UsePlaceViewDialog').show()" disabled="#{empty usePlaceController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="${msg.Edit}" update=":UsePlaceEditForm" oncomplete="PF('UsePlaceEditDialog').show()" disabled="#{empty usePlaceController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="${msg.Delete}" actionListener="#{usePlaceController.delete}" update=":growl,datalist" disabled="#{empty usePlaceController.selected}">
+                <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

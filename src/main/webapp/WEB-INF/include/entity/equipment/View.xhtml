@@ -8,32 +8,32 @@
 
     <ui:composition>
 
-        <p:dialog id="EquipmentViewDlg" widgetVar="EquipmentViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewEquipmentTitle}" closeOnEscape="true">
+        <p:dialog id="EquipmentViewDlg" widgetVar="EquipmentViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.ViewEquipmentTitle}" closeOnEscape="true">
 
             <h:form id="EquipmentViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{equipmentController.selected != null}">
 
-<!--                        <h:outputText value="#{bundle.ViewEquipmentLabel_id}"/>
-                        <h:outputText value="#{equipmentController.selected.id}" title="#{bundle.ViewEquipmentTitle_id}"/>-->
+<!--                        <h:outputText value="${msg.ViewEquipmentLabel_id}"/>
+                        <h:outputText value="#{equipmentController.selected.id}" title="${msg.ViewEquipmentTitle_id}"/>-->
 
-                        <h:outputText value="#{bundle.ViewEquipmentLabel_name}"/>
-                        <h:outputText value="#{equipmentController.selected.name}" title="#{bundle.ViewEquipmentTitle_name}"/>
+                        <h:outputText value="${msg.ViewEquipmentLabel_name}"/>
+                        <h:outputText value="#{equipmentController.selected.name}" title="${msg.ViewEquipmentTitle_name}"/>
 
-                        <h:outputText value="#{bundle.ViewEquipmentLabel_rentPermission}"/>
-                        <h:outputText value="#{equipmentController.selected.rentPermission}" title="#{bundle.ViewEquipmentTitle_rentPermission}"/>
+                        <h:outputText value="${msg.ViewEquipmentLabel_rentPermission}"/>
+                        <h:outputText value="#{equipmentController.selected.rentPermission}" title="${msg.ViewEquipmentTitle_rentPermission}"/>
 
-                        <h:outputText value="#{bundle.ViewEquipmentLabel_type}"/>
-                        <h:outputText value="#{equipmentController.selected.type}" title="#{bundle.ViewEquipmentTitle_type}"/>
+                        <h:outputText value="${msg.ViewEquipmentLabel_type}"/>
+                        <h:outputText value="#{equipmentController.selected.type}" title="${msg.ViewEquipmentTitle_type}"/>
 
-                        <h:outputText value="#{bundle.ViewEquipmentLabel_licenseTypeId}"/>
+                        <h:outputText value="${msg.ViewEquipmentLabel_licenseTypeId}"/>
                         <h:outputText value="#{equipmentController.selected.licenseTypeId.licenseName}"/>
 
-                        <h:outputText value="#{bundle.ViewEquipmentLabel_usePlaceId}"/>
+                        <h:outputText value="${msg.ViewEquipmentLabel_usePlaceId}"/>
                         <h:outputText value="#{equipmentController.selected.usePlaceId.id}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PF('EquipmentViewDialog').hide()"/>
+                    <p:commandButton value="${msg.Close}" onclick="PF('EquipmentViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

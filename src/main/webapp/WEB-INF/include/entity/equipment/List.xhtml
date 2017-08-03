@@ -8,16 +8,16 @@
 
     <h:form id="EquipmentListForm">
 
-        <p:panel header="#{bundle.ListEquipmentTitle}">
+        <p:panel header="${msg.ListEquipmentTitle}">
             <p:contextMenu id="EquipmentDataTableContextMenu" for="datalist">  
-                <p:menuitem value="#{bundle.Create}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{bundle.View}" onclick="document.getElementById('EquipmentListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{bundle.Edit}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{bundle.Delete}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:menuitem value="${msg.Create}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="${msg.View}" onclick="document.getElementById('EquipmentListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="${msg.Edit}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="${msg.Delete}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" onclick="document.getElementById('EquipmentListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{bundle.EquipmentMenuItem_licenseTypeId}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  actionListener="#{equipmentController.prepareLicenseTypeId}" update=":LicenseTypeViewForm" oncomplete="PF('LicenseTypeViewDialog').show()" disabled="#{empty equipmentController.selected.licenseTypeId}"/>  
-                <p:menuitem value="#{bundle.EquipmentMenuItem_usePlaceId}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  actionListener="#{equipmentController.prepareUsePlaceId}" update=":UsePlaceViewForm" oncomplete="PF('UsePlaceViewDialog').show()" disabled="#{empty equipmentController.selected.usePlaceId}"/>  
-                <p:menuitem value="#{bundle.EquipmentMenuItem_reservCollection}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  action="#{equipmentController.navigateReservCollection}" disabled="#{equipmentController.isReservCollectionEmpty}" ajax="false"/>  
+                <p:menuitem value="${msg.EquipmentMenuItem_licenseTypeId}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  actionListener="#{equipmentController.prepareLicenseTypeId}" update=":LicenseTypeViewForm" oncomplete="PF('LicenseTypeViewDialog').show()" disabled="#{empty equipmentController.selected.licenseTypeId}"/>  
+                <p:menuitem value="${msg.EquipmentMenuItem_usePlaceId}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  actionListener="#{equipmentController.prepareUsePlaceId}" update=":UsePlaceViewForm" oncomplete="PF('UsePlaceViewDialog').show()" disabled="#{empty equipmentController.selected.usePlaceId}"/>  
+                <p:menuitem value="${msg.EquipmentMenuItem_reservCollection}" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-search"  action="#{equipmentController.navigateReservCollection}" disabled="#{equipmentController.isReservCollectionEmpty}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{equipmentController.items}"
@@ -47,7 +47,7 @@
 
                 <p:column sortBy="#{item.id}" filterBy="#{item.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_id}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_id}"/>
                     </f:facet>
                     <h:outputText value="#{item.id}"/>
                 </p:column>
@@ -55,7 +55,7 @@
 
                 <p:column sortBy="#{item.name}" filterBy="#{item.name}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_name}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_name}"/>
                     </f:facet>
                     <h:outputText value="#{item.name}"/>
                 </p:column>
@@ -63,7 +63,7 @@
 
                 <p:column sortBy="#{item.rentPermission}" filterBy="#{item.rentPermission}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_rentPermission}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_rentPermission}"/>
                     </f:facet>
                     <h:outputText value="#{item.rentPermission}"/>
                 </p:column>
@@ -71,7 +71,7 @@
 
                 <p:column sortBy="#{item.type}" filterBy="#{item.type}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_type}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_type}"/>
                     </f:facet>
                     <h:outputText value="#{item.type}"/>
                 </p:column>
@@ -79,7 +79,7 @@
 
                 <p:column sortBy="#{item.licenseTypeId.licenseName}" filterBy="#{item.licenseTypeId.licenseName}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_licenseTypeId}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_licenseTypeId}"/>
                     </f:facet>
                     <h:outputText value="#{item.licenseTypeId.licenseName}"/>
                 </p:column>
@@ -87,7 +87,7 @@
 
                 <p:column sortBy="#{item.usePlaceId.id}" filterBy="#{item.usePlaceId.id}">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.ListEquipmentTitle_usePlaceId}"/>
+                        <h:outputText value="${msg.ListEquipmentTitle_usePlaceId}"/>
                     </f:facet>
                     <h:outputText value="#{item.usePlaceId.building} #{item.usePlaceId.place}"/>
                 </p:column>
@@ -95,11 +95,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{equipmentController.prepareCreate}" update=":EquipmentCreateForm" oncomplete="PF('EquipmentCreateDialog').show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{bundle.View}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty equipmentController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EquipmentEditForm" oncomplete="PF('EquipmentEditDialog').show()" disabled="#{empty equipmentController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{equipmentController.delete}" update=":growl,datalist" disabled="#{empty equipmentController.selected}">
-                <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            <p:commandButton id="createButton"                             rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-plus"   value="${msg.Create}" actionListener="#{equipmentController.prepareCreate}" update=":EquipmentCreateForm" oncomplete="PF('EquipmentCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="${msg.View}" update=":EquipmentViewForm" oncomplete="PF('EquipmentViewDialog').show()" disabled="#{empty equipmentController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-pencil" value="${msg.Edit}" update=":EquipmentEditForm" oncomplete="PF('EquipmentEditDialog').show()" disabled="#{empty equipmentController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" rendered="#{facesContext.externalContext.isUserInRole('manager')}" icon="ui-icon-trash"  value="${msg.Delete}" actionListener="#{equipmentController.delete}" update=":growl,datalist" disabled="#{empty equipmentController.selected}">
+                <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>

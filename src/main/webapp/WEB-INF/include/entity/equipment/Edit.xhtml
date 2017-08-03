@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="EquipmentEditDlg" widgetVar="EquipmentEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditEquipmentTitle}" closeOnEscape="true">
+        <p:dialog id="EquipmentEditDlg" widgetVar="EquipmentEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.EditEquipmentTitle}" closeOnEscape="true">
 
             <h:form id="EquipmentEditForm">
 
@@ -15,21 +15,21 @@
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{equipmentController.selected != null}">
 
 
-                        <h:outputLabel value="#{bundle.EditEquipmentLabel_id}" for="id" />
+                        <h:outputLabel value="${msg.EditEquipmentLabel_id}" for="id" />
                         <h:outputText id="id" value="#{equipmentController.selected.id}" />
 
-                        <p:outputLabel value="#{bundle.EditEquipmentLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{equipmentController.selected.name}" title="#{bundle.EditEquipmentTitle_name}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditEquipmentLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{equipmentController.selected.name}" title="${msg.EditEquipmentTitle_name}" size="100" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.EditEquipmentLabel_rentPermission}" for="rentPermission" />
-                        <p:inputText id="rentPermission" value="#{equipmentController.selected.rentPermission}" title="#{bundle.EditEquipmentTitle_rentPermission}"/>
+                        <p:outputLabel value="${msg.EditEquipmentLabel_rentPermission}" for="rentPermission" />
+                        <p:inputText id="rentPermission" value="#{equipmentController.selected.rentPermission}" title="${msg.EditEquipmentTitle_rentPermission}"/>
 
-                        <p:outputLabel value="#{bundle.EditEquipmentLabel_type}" for="type" />
-                        <p:inputText id="type" value="#{equipmentController.selected.type}" title="#{bundle.EditEquipmentTitle_type}" size="100" maxlength="255"/>
+                        <p:outputLabel value="${msg.EditEquipmentLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{equipmentController.selected.type}" title="${msg.EditEquipmentTitle_type}" size="100" maxlength="255"/>
 
-                        <p:outputLabel value="#{bundle.EditEquipmentLabel_licenseTypeId}" for="licenseTypeId" />
+                        <p:outputLabel value="${msg.EditEquipmentLabel_licenseTypeId}" for="licenseTypeId" />
                         <p:selectOneMenu id="licenseTypeId" value="#{equipmentController.selected.licenseTypeId}"  converter="licenseTypeConverter">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="${msg.SelectOneMessage}"/>
                             <f:selectItems value="#{licenseTypeController.items}"
                                            var="licenseTypeIdItem"
                                            itemValue="#{licenseTypeIdItem}"
@@ -38,9 +38,9 @@
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{bundle.EditEquipmentLabel_usePlaceId}" for="usePlaceId" />
+                        <p:outputLabel value="${msg.EditEquipmentLabel_usePlaceId}" for="usePlaceId" />
                         <p:selectOneMenu id="usePlaceId" value="#{equipmentController.selected.usePlaceId}"  converter="usePlaceConverter">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="${msg.SelectOneMessage}"/>
                             <f:selectItems value="#{usePlaceController.items}"
                                            var="usePlaceIdItem"
                                            itemValue="#{usePlaceIdItem}"
@@ -49,10 +49,10 @@
 
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{equipmentController.save}" value="#{bundle.Save}" update="display,:EquipmentListForm:datalist,:EquipmentListForm:EquipmentDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EquipmentEditDialog'));">
-                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    <p:commandButton actionListener="#{equipmentController.save}" value="${msg.Save}" update="display,:EquipmentListForm:datalist,:EquipmentListForm:EquipmentDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EquipmentEditDialog'));">
+                        <p:confirm header="${msg.ConfirmationHeader}" message="${msg.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{bundle.Cancel}" oncomplete="PF('EquipmentEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                    <p:commandButton value="${msg.Cancel}" oncomplete="PF('EquipmentEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
                 </h:panelGroup>
 
             </h:form>

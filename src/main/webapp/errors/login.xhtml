@@ -10,13 +10,13 @@
     <ui:define name="title">
         
 <!--    <ui:define name="body" ><center>
-            <p:panel header="#{bundle.Error}">
+            <p:panel header="${msg.Error}">
                 <p><h:outputText value="ERROR - nie masz uprawnień do zasobu"></h:outputText></p>
             </p:panel>
         </center>
     </ui:define>-->
 
-        <h:outputText value="#{bundle.AppName}"></h:outputText>
+        <h:outputText value="${msg.AppName}"></h:outputText>
     </ui:define>
     <ui:define name="body"><center>
             <p:panel header="Please, login before start">

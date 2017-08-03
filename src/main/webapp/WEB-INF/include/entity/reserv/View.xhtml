@@ -8,44 +8,44 @@
 
     <ui:composition>
 
-        <p:dialog id="ReservViewDlg" widgetVar="ReservViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewReservTitle}" closeOnEscape="true">
+        <p:dialog id="ReservViewDlg" widgetVar="ReservViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.ViewReservTitle}" closeOnEscape="true">
 
             <h:form id="ReservViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{reservController.selected != null}">
 
-                        <h:outputText value="#{bundle.ViewReservLabel_id}"/>
-                        <h:outputText value="#{reservController.selected.id}" title="#{bundle.ViewReservTitle_id}"/>
+                        <h:outputText value="${msg.ViewReservLabel_id}"/>
+                        <h:outputText value="#{reservController.selected.id}" title="${msg.ViewReservTitle_id}"/>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_description}"/>
-                        <h:outputText value="#{reservController.selected.description}" title="#{bundle.ViewReservTitle_description}"/>
+                        <h:outputText value="${msg.ViewReservLabel_description}"/>
+                        <h:outputText value="#{reservController.selected.description}" title="${msg.ViewReservTitle_description}"/>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_reservationEnd}"/>
-                        <h:outputText value="#{reservController.selected.reservationEnd}" title="#{bundle.ViewReservTitle_reservationEnd}">
+                        <h:outputText value="${msg.ViewReservLabel_reservationEnd}"/>
+                        <h:outputText value="#{reservController.selected.reservationEnd}" title="${msg.ViewReservTitle_reservationEnd}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_reservationMadeDate}"/>
-                        <h:outputText value="#{reservController.selected.reservationMadeDate}" title="#{bundle.ViewReservTitle_reservationMadeDate}">
+                        <h:outputText value="${msg.ViewReservLabel_reservationMadeDate}"/>
+                        <h:outputText value="#{reservController.selected.reservationMadeDate}" title="${msg.ViewReservTitle_reservationMadeDate}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_reservationStart}"/>
-                        <h:outputText value="#{reservController.selected.reservationStart}" title="#{bundle.ViewReservTitle_reservationStart}">
+                        <h:outputText value="${msg.ViewReservLabel_reservationStart}"/>
+                        <h:outputText value="#{reservController.selected.reservationStart}" title="${msg.ViewReservTitle_reservationStart}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_accountId}"/>
+                        <h:outputText value="${msg.ViewReservLabel_accountId}"/>
                         <h:outputText value="#{reservController.selected.accountId.name}"/>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_equipmentId}"/>
+                        <h:outputText value="${msg.ViewReservLabel_equipmentId}"/>
                         <h:outputText value="#{reservController.selected.equipmentId.name}"/>
 
-                        <h:outputText value="#{bundle.ViewReservLabel_reservStatusId}"/>
+                        <h:outputText value="${msg.ViewReservLabel_reservStatusId}"/>
                         <h:outputText value="#{reservController.selected.reservStatusId.reservationStatusName}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PF('ReservViewDialog').hide()"/>
+                    <p:commandButton value="${msg.Close}" onclick="PF('ReservViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

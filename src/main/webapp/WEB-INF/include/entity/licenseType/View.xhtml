@@ -8,33 +8,33 @@
 
     <ui:composition>
 
-        <p:dialog id="LicenseTypeViewDlg" widgetVar="LicenseTypeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewLicenseTypeTitle}" closeOnEscape="true">
+        <p:dialog id="LicenseTypeViewDlg" widgetVar="LicenseTypeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="${msg.ViewLicenseTypeTitle}" closeOnEscape="true">
 
             <h:form id="LicenseTypeViewForm">
 
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" columnClasses="column" rendered="#{licenseTypeController.selected != null}">
 
-                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_id}"/>
-                        <h:outputText value="#{licenseTypeController.selected.id}" title="#{bundle.ViewLicenseTypeTitle_id}"/>
+                        <h:outputText value="${msg.ViewLicenseTypeLabel_id}"/>
+                        <h:outputText value="#{licenseTypeController.selected.id}" title="${msg.ViewLicenseTypeTitle_id}"/>
 
-                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseEnd}"/>
-                        <h:outputText value="#{licenseTypeController.selected.licenseEnd}" title="#{bundle.ViewLicenseTypeTitle_licenseEnd}">
+                        <h:outputText value="${msg.ViewLicenseTypeLabel_licenseEnd}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseEnd}" title="${msg.ViewLicenseTypeTitle_licenseEnd}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
 
-                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseName}"/>
-                        <h:outputText value="#{licenseTypeController.selected.licenseName}" title="#{bundle.ViewLicenseTypeTitle_licenseName}"/>
+                        <h:outputText value="${msg.ViewLicenseTypeLabel_licenseName}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseName}" title="${msg.ViewLicenseTypeTitle_licenseName}"/>
 
-                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseSerial}"/>
-                        <h:outputText value="#{licenseTypeController.selected.licenseSerial}" title="#{bundle.ViewLicenseTypeTitle_licenseSerial}"/>
+                        <h:outputText value="${msg.ViewLicenseTypeLabel_licenseSerial}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseSerial}" title="${msg.ViewLicenseTypeTitle_licenseSerial}"/>
 
-                        <h:outputText value="#{bundle.ViewLicenseTypeLabel_licenseStart}"/>
-                        <h:outputText value="#{licenseTypeController.selected.licenseStart}" title="#{bundle.ViewLicenseTypeTitle_licenseStart}">
+                        <h:outputText value="${msg.ViewLicenseTypeLabel_licenseStart}"/>
+                        <h:outputText value="#{licenseTypeController.selected.licenseStart}" title="${msg.ViewLicenseTypeTitle_licenseStart}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PF('LicenseTypeViewDialog').hide()"/>
+                    <p:commandButton value="${msg.Close}" onclick="PF('LicenseTypeViewDialog').hide()"/>
                 </h:panelGroup>
 
             </h:form>

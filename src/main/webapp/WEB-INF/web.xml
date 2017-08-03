@@ -38,6 +38,8 @@
             <url-pattern>/faces/errors/403.xhtml</url-pattern>
             <url-pattern>/faces/errors/404.xhtml</url-pattern>
             <url-pattern>/faces/errors/error.xhtml</url-pattern>
+            <url-pattern>/faces/login.xhtml</url-pattern>
+            <url-pattern>/faces/index.xhtml</url-pattern>
         </web-resource-collection>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
