@@ -6,23 +6,15 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/include/template_empty.xhtml">
-    <!--<ui:composition template="/template.xhtml">-->
-    <!--<ui:composition template="/WEB-INF/include/template.xhtml">-->
     <ui:define name="title">
         <h:outputText value="${msg.AppName}"></h:outputText>
     </ui:define>
     <ui:define name="body"><center>
-            <!--<h:form id="logoutonlogin" prependId="false" styleClass="settings-form" rendered="#{request.userPrincipal ne null}">-->
             <h:form id="logoutonlogin" prependId="false" styleClass="settings-form">
-                <!--<h:outputText value="You are logged in as: #{request.userPrincipal.name}"/>-->
             </h:form>
-            <!--<h:commandButton action="/index" value="HOME PAGE"/>-->
-            <!--<h:form id="notlogin" prependId="false" rendered="#{request.userPrincipal ne not null}">-->
             <h:form id="notlogin" prependId="false">
                 <h2>Hello, please log in:</h2><br />
-                <!--<a href="login.xhtml" LINK />-->
-                <a href="/rentit-master/" >Start</a>
-                <!--<a href="/rentit-master/index.xhtml">Start</a>-->
+                <!--<p:commandButton action="/rentit-master/login" value="  ${msg.Start}  "/>-->
                 <h:panelGrid columns="2">
                     <h:outputLabel for="j_username"
                                    value="Please type your user name: "/>
