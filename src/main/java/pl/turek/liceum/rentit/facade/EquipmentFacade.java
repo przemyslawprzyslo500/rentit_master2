@@ -6,9 +6,11 @@
 package pl.turek.liceum.rentit.facade;
 
 import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import pl.turek.liceum.rentit.model.Equipment;
 import pl.turek.liceum.rentit.model.Equipment_;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -56,7 +58,19 @@ public class EquipmentFacade extends AbstractFacade<Equipment> {
         cq.select(cb.literal(1L)).distinct(true).where(cb.equal(equipment, entity), cb.isNotNull(equipment.get(Equipment_.usePlaceId)));
         return em.createQuery(cq).getResultList().isEmpty();
     }
+    
+    public List<Equipment> findEquipmentRentable() {
+        TypedQuery<Equipment> tq = em.createNamedQuery("Equipment.findByRentPermission", Equipment.class);
+        tq.setParameter("rentPermission", "true");
+        return tq.getResultList();
+    }
 
+//        public List<Zamowienie> znajdzZamowieniaDlaKlienta(String login) {
+//        TypedQuery<Zamowienie> tq = em.createNamedQuery("Zamowienie.znajdzDlaKlienta", Zamowienie.class);
+//        tq.setParameter("login", login);
+//        return tq.getResultList();
+//    }
+    
     public UsePlace findUsePlaceId(Equipment entity) {
         return this.getMergedEntity(entity).getUsePlaceId();
     }

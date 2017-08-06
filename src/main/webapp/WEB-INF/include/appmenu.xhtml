@@ -15,7 +15,7 @@
                 <p:menuitem value="${msg.EditAccountTitle}" action="#{listaKontPageBean.edytujKonto()}" outcome="/app/account/EditMyAccount.xhtml" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('admin')}" value="${msg.AccountHeading} " outcome="/app/account/index" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('manager')}" value="${msg.EquipmentHeading} " outcome="/app/equipment/index" />
-                    <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('employee')}" value="${msg.EquipmentHeading} " outcome="/app/equipment/index" />
+                    <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('employee')}" value="${msg.EquipmentHeading} " outcome="/app/equipment/index_e" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('admin')}" value="${msg.LicenseTypeHeading} " outcome="/app/licenseType/index" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('manager')}" value="${msg.ReservHeading} " outcome="/app/reserv/index" />
                     <p:menuitem rendered="#{facesContext.externalContext.isUserInRole('employee')}" value="${msg.ReservHeading} " outcome="/app/reserv/index" />
